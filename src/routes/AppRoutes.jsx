@@ -19,6 +19,7 @@ import CategoryAnalytics from '../pages/analytics/CategoryAnalytics'
 import BulkOrders from '../pages/BulkOrders'
 import ContactInquiries from '../pages/ContactInquiries'
 import Coupons from '../pages/Coupons'
+import Newsletters from '../pages/Newsletters'
 
 const ProductCreate = lazy(() => import('../pages/ProductCreate'))
 const ProductEdit = lazy(() => import('../pages/ProductEdit'))
@@ -85,6 +86,7 @@ export default function AppRoutes() {
         <Route path="/bulk-orders" element={<BulkOrders />} />
         <Route path="/contact-inquiries" element={<ContactInquiries />} />
         <Route path="/coupons" element={<Coupons />} />
+        <Route path="/newsletters" element={<Newsletters />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

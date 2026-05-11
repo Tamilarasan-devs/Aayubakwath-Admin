@@ -23,6 +23,7 @@ import {
   Truck,
   MessageSquare,
   TicketPercent,
+  Mail,
 } from "lucide-react";
 
 const navGroups = [
@@ -139,6 +140,12 @@ const navGroups = [
         label: "Contact",
         path: "/contact-inquiries",
         icon: MessageSquare,
+      },
+      {
+        key: "newsletters",
+        label: "Newsletters",
+        path: "/newsletters",
+        icon: Mail,
       },
     ],
   },
