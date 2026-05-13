@@ -289,7 +289,7 @@ Message: ${form.message}`;
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 border border-gray-200 mb-6">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#111827]" />
                       <span className="text-xs font-semibold uppercase tracking-widest text-[#111827]">
-                        Why Contact Us
+                       Dedicated Support
                       </span>
                     </div>
 
