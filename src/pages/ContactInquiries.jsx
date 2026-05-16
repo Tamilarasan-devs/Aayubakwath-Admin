@@ -104,6 +104,13 @@ Message: ${form.message}`;
       href: "mailto:info.sblsmarketing@gmail.com",
     },
     {
+      icon: Mail,
+      label: "Email Us",
+      value: "support@aayubakwath.com",
+      sub: "Reply within 24 hours",
+      href: "mailto:support@aayubakwath.com",
+    },
+    {
       icon: Phone,
       label: "Call Us",
       value: "+91 94431 57282",
