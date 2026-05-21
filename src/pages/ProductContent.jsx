@@ -109,6 +109,7 @@ function FileUploadField({ label, value, onChange }) {
 /* ─── Empty state ─────────────────────────────────────────────────────────── */
 
 const emptyContent = {
+  description: "",
   benefits: [],
   benefitsImage: "",
   howToUse: [],
@@ -361,6 +362,26 @@ export default function ProductContent() {
 
       {selectedProductId && (
         <form onSubmit={handleSubmit} className="space-y-4">
+
+          {/* ── 0. DETAILED DESCRIPTION ── */}
+          <Card variant="elevated">
+            <CardBody>
+              <SectionHeader
+                icon={BookOpen}
+                color="#4f46e5"
+                title="Detailed Description"
+                subtitle="A comprehensive description of this product shown on the details page"
+              />
+              <Input
+                as="textarea"
+                label="Detailed Description"
+                value={content.description || ""}
+                onChange={(e) => updateContent("description", e.target.value)}
+                rows={4}
+                placeholder="Enter a detailed description for the product..."
+              />
+            </CardBody>
+          </Card>
 
           {/* ── 1. BENEFITS ── */}
           <Card variant="elevated">
