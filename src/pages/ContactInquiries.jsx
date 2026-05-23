@@ -99,24 +99,17 @@ Message: ${form.message}`;
     {
       icon: Mail,
       label: "Email Us",
-      value: "info.sblsmarketing@gmail.com",
-      sub: "Reply within 24 hours",
-      href: "mailto:info.sblsmarketing@gmail.com",
-    },
-    {
-      icon: Mail,
-      label: "Email Us",
       value: "support@aayubakwath.com",
       sub: "Reply within 24 hours",
       href: "mailto:support@aayubakwath.com",
     },
-    {
-      icon: Phone,
-      label: "Call Us",
-      value: "+91 94431 57282",
-      sub: "Mon – Sat, 9 AM – 6 PM",
-      href: "tel:+919443157282",
-    },
+    // {
+    //   icon: Phone,
+    //   label: "Call Us",
+    //   value: "+91 94431 57282",
+    //   sub: "Mon – Sat, 9 AM – 6 PM",
+    //   href: "tel:+919443157282",
+    // },
   ];
 
   const whyContactUs = [
@@ -296,7 +289,7 @@ Message: ${form.message}`;
                     <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gray-100 border border-gray-200 mb-6">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#111827]" />
                       <span className="text-xs font-semibold uppercase tracking-widest text-[#111827]">
-                       Dedicated Support
+                        Dedicated Support
                       </span>
                     </div>
 
@@ -340,7 +333,7 @@ Message: ${form.message}`;
                           Mon – Sat · 9 AM – 6 PM IST
                         </p>
                       </div>
-                      
+
                       <div className="flex items-start gap-3">
                         <Mail
                           size={16}
@@ -498,7 +491,7 @@ Message: ${form.message}`;
                 <p className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-3">
                   03 — Location
                 </p>
-                
+
                 <h2 className="font-display text-3xl lg:text-4xl font-black tracking-tight text-[#111827]">
                   Find Us on the Map
                 </h2>
