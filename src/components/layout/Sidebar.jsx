@@ -24,6 +24,7 @@ import {
   MessageSquare,
   TicketPercent,
   Mail,
+  Globe,
 } from "lucide-react";
 
 const navGroups = [
@@ -76,6 +77,12 @@ const navGroups = [
         label: "Categories",
         path: "/analytics/categories",
         icon: Tags,
+      },
+      {
+        key: "analytics-google",
+        label: "Google Analytics",
+        path: "/analytics/google",
+        icon: Globe,
       },
     ],
   },

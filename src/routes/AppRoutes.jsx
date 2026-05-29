@@ -16,6 +16,7 @@ import ProductAnalytics from '../pages/analytics/ProductAnalytics'
 import UserAnalytics from '../pages/analytics/UserAnalytics'
 import CartWishlistAnalytics from '../pages/analytics/CartWishlistAnalytics'
 import CategoryAnalytics from '../pages/analytics/CategoryAnalytics'
+import GoogleAnalytics from '../pages/analytics/GoogleAnalytics'
 import BulkOrders from '../pages/BulkOrders'
 import ContactInquiries from '../pages/ContactInquiries'
 import Coupons from '../pages/Coupons'
@@ -83,6 +84,7 @@ export default function AppRoutes() {
         <Route path="/analytics/users" element={<UserAnalytics />} />
         <Route path="/analytics/cart-wishlist" element={<CartWishlistAnalytics />} />
         <Route path="/analytics/categories" element={<CategoryAnalytics />} />
+        <Route path="/analytics/google" element={<GoogleAnalytics />} />
         <Route path="/bulk-orders" element={<BulkOrders />} />
         <Route path="/contact-inquiries" element={<ContactInquiries />} />
         <Route path="/coupons" element={<Coupons />} />
