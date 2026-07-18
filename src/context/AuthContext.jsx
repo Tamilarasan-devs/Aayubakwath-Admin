@@ -65,7 +65,7 @@ export function AuthProvider({ children }) {
     }
 
     verifyAuth()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const clearAuth = useCallback(() => {
     localStorage.removeItem(TOKEN_KEY)
@@ -79,22 +79,92 @@ export function AuthProvider({ children }) {
     const res = await axiosInstance.post('/auth/login', { email, password })
     const data = res.data?.data || res.data
 
-    localStorage.setItem(TOKEN_KEY, data.token)
-    if (data.refreshToken) localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken)
+    const token = data.token
+    const refreshToken = data.refreshToken
+    const userPayload = data.user || data
+
+    localStorage.setItem(TOKEN_KEY, token)
+    if (refreshToken) localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken)
 
     const userData = {
-      id: data.id || data.user?.id,
-      name: data.name || data.user?.name || email.split('@')[0],
-      email: data.email || data.user?.email || email,
-      role: data.role || data.user?.role || 'ADMIN',
+      id: userPayload.id,
+      name: userPayload.name || email.split('@')[0],
+      email: userPayload.email || email,
+      role: userPayload.role || 'ADMIN',
     }
 
     localStorage.setItem(USER_KEY, JSON.stringify(userData))
     setUser(userData)
-
-    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${data.token}`
+    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
     return userData
+  }, [])
+
+  /**
+   * Register a new ADMIN account directly.
+   * Calls /auth/admin/register — requires a secret key.
+   * Returns tokens immediately (no OTP verification step).
+   */
+  const register = useCallback(async (name, email, password, secretKey) => {
+    const res = await axiosInstance.post('/auth/admin/register', { name, email, password, secretKey })
+    const data = res.data?.data || res.data
+
+    const token = data.token
+    const refreshToken = data.refreshToken
+    const userPayload = data.user || data
+
+    localStorage.setItem(TOKEN_KEY, token)
+    if (refreshToken) localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken)
+
+    const userData = {
+      id: userPayload.id,
+      name: userPayload.name || name,
+      email: userPayload.email || email,
+      role: userPayload.role || 'ADMIN',
+    }
+
+    localStorage.setItem(USER_KEY, JSON.stringify(userData))
+    setUser(userData)
+    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+    return userData
+  }, [])
+
+  /**
+   * Step 2 of account creation:
+   * POST /auth/verify-otp → backend verifies OTP, returns tokens + user
+   * Stores credentials and marks the user as authenticated.
+   */
+  const verifyOtp = useCallback(async (userId, otp) => {
+    const res = await axiosInstance.post('/auth/verify-otp', { userId, otp })
+    const data = res.data?.data || res.data
+
+    const token = data.token
+    const refreshToken = data.refreshToken
+    const userPayload = data.user || data
+
+    localStorage.setItem(TOKEN_KEY, token)
+    if (refreshToken) localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken)
+
+    const userData = {
+      id: userPayload.id,
+      name: userPayload.name,
+      email: userPayload.email,
+      role: userPayload.role || 'ADMIN',
+    }
+
+    localStorage.setItem(USER_KEY, JSON.stringify(userData))
+    setUser(userData)
+    axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`
+
+    return userData
+  }, [])
+
+  /**
+   * Resend OTP if it expired or wasn't received.
+   */
+  const resendOtp = useCallback(async (userId) => {
+    await axiosInstance.post('/auth/resend-otp', { userId })
   }, [])
 
   const logout = useCallback(() => {
@@ -107,6 +177,7 @@ export function AuthProvider({ children }) {
     isAuthenticated,
     loading,
     login,
+    register,
     logout,
   }
 
